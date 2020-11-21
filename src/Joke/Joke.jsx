@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import './style.css';
 
-export const Joke = () => {
-  const [upLikes, setUpLikes] = useState(0);
-  const [downLikes, setDownLikes] = useState(0);
+export const Joke = (props) => {
+  const [upLikes, setUpLikes] = useState(props.likes);
+  const [downLikes, setDownLikes] = useState(props.dislikes);
 
   const addLike = () => {
     setUpLikes(upLikes + 1);
   };
 
   const takeLike = () => {
-    setDownLikes(downLikes - 1);
+    setDownLikes(downLikes + 1);
   };
 
   return (
@@ -21,16 +21,12 @@ export const Joke = () => {
             <div className="joke__user">
               <img
                 className="user-avatar"
-                src="../assets/img-users/user01.png"
+                src={`../assets/img-users/${props.userId}.png`}
               />
-              <p className="user-name">Neroxx</p>
+              <p className="user-name">{props.userName}</p>
             </div>
 
-            <p className="joke__text">
-              The secret service isn't allowed to yell "Get down!" anymore when
-              the president is about to be attacked. Now they have to yell
-              "Donald, duck!"
-            </p>
+            <p className="joke__text">{props.text}</p>
           </div>
           <div className="joke__likes">
             <button
